@@ -9,6 +9,6 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 // Route for getting user profile (protected)
-router.get('/profile', authController.getProfile);
+//router.get('/profile', authController.getProfile);
 
 module.exports = router;
