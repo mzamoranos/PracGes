@@ -1,5 +1,6 @@
 {
   "name": "PracGes",
+  "type": "commonjs",
   "version": "1.0.0",
   "description": "A project using React, Express, Tailwind, PostgreSQL, and JWT.",
   "main": "server.js",

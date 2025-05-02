@@ -11,9 +11,9 @@ const NormativaPage = () => {
         <Navbar /> 
 
     <div className="flex flex-col min-h-screen p-4">
-      <h1 className="text-3xl font-bold mb-8 text-red-800 text-center">Normativa y más</h1>
+      <h1 className="text-3xl font-bold mb-4 text-red-800 text-center">Normativa y más</h1>
 
-      <div className="flex flex-col md:flex-row flex-1 gap-6">
+      <div className="flex flex-col md:flex-row flex-1 gap-4">
         <a
           href="https://www.todofp.es"
           target="_blank"

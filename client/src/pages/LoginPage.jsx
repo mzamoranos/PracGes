@@ -6,18 +6,20 @@ const LoginPage = () => {
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
+            <h2 className="text-3xl font-bold text-center text-red-800 mb-4 p-4">Iniciar sesión</h2>
+
             <main className="flex items-center justify-center flex-1">
-      <div className="bg-red-50 p-8 border border-red-300 rounded-2xl shadow-md w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-red-800 mb-6">Iniciar sesión</h2>
+      
         
+        <div className="bg-red-50 p-8 border border-red-300 rounded-2xl shadow-md w-full max-w-md">
         <form className="flex flex-col gap-4">
           <div>
-            <label htmlFor="email" className="block text-gray-800 font-medium mb-2">Correo electrónico</label>
+            <label htmlFor="dni" className="block text-gray-800 font-medium mb-2">Usuario</label>
             <input
-              type="email"
-              id="email"
+              type="dni"
+              id="dni"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon-500"
-              placeholder="Introduce tu correo"
+              placeholder="Introduce tu dni"
             />
           </div>
 
