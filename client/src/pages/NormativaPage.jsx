@@ -37,7 +37,7 @@ const NormativaPage = () => {
         </a>
 
         <a
-          href="https://www.iescentroeducativo.com"
+          href="https://cipetitudela.web.educacion.navarra.es/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 bg-white border border-red-300 rounded-lg shadow-lg p-8 flex flex-col items-center justify-center hover:bg-red-100 transition"
