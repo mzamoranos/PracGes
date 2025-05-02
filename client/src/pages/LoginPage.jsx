@@ -3,6 +3,47 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const LoginPage = () => {
+  const [dni, setDni] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:5000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ dni, password }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Credenciales incorrectas');
+    }
+
+    const data = await response.json();
+
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('rol', data.rol);
+
+    // Redirige según el rol
+    if (data.rol === 'alumno') {
+      window.location.href = '/alumno/dashboard';
+    } else if (data.rol === 'tutor_profesor') {
+      window.location.href = '/profesor/dashboard';
+    } else if (data.rol === 'tutor_empresa') {
+      window.location.href = '/empresa/dashboard';
+    }
+
+  } catch (err) {
+    console.error(err);
+    setError('DNI o contraseña incorrectos');
+  }
+};
+
+
     return (
         <div className="flex flex-col min-h-screen">
             <Navbar />
@@ -18,6 +59,8 @@ const LoginPage = () => {
             <input
               type="dni"
               id="dni"
+              value={dni}
+              onChange={(e) => setDni(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon-500"
               placeholder="Introduce tu dni"
             />
@@ -28,11 +71,13 @@ const LoginPage = () => {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon-300"
               placeholder="Introduce tu contraseña"
             />
           </div>
-
+              {error && <p className="text-red-600">{error}</p>}
           <button
             type="submit"
             className="bg-maroon-600 hover:bg-maroon-700 bg-red-800 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
