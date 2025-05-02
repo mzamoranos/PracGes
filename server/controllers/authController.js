@@ -5,7 +5,7 @@ const Alumnos = require ('../models/Alumno');
 const TutoresProfesores = require ('../models/TutorProfesor');
 const TutoresEmpresas = require ('../models/TutorEmpresa');
 
-export async function login(req, res) {
+async function login(req, res) {
     const { dni, password } = req.body;
 
     try {
@@ -42,3 +42,4 @@ export async function login(req, res) {
         res.status(500).json({ message: 'Error en el login', error });
     }
 }
+module.exports = {login };
