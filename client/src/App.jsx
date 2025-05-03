@@ -14,7 +14,6 @@ const App = () => {
           <Route path="/normativa" element={<NormativaPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/alumno/dashboard" element={<AlumnoDashboard />} />
-          {/* Aquí puedes agregar más rutas según sea necesario */}
         </Routes>
       </div>
     </Router>

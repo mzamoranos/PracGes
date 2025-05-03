@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [dni, setDni] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,11 +54,11 @@ const LoginPage = () => {
       
         
         <div className="bg-red-50 p-8 border border-red-300 rounded-2xl shadow-md w-full max-w-md">
-        <form className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="dni" className="block text-gray-800 font-medium mb-2">Usuario</label>
             <input
-              type="dni"
+              type="text"
               id="dni"
               value={dni}
               onChange={(e) => setDni(e.target.value)}
