@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const Alumnos = require ('../models/Alumno');
 const TutoresProfesores = require ('../models/TutorProfesor');
@@ -7,6 +8,7 @@ const TutoresEmpresas = require ('../models/TutorEmpresa');
 
 async function login(req, res) {
     const { dni, password } = req.body;
+    
 
     try {
         let user = await Alumnos.findOne({ where: { dni } });
@@ -31,7 +33,7 @@ async function login(req, res) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
-        const token = sign(
+        const token = jwt.sign(
             { dni: user.dni, rol },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
