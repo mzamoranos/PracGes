@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/static/js/main.b8bee9c3.js",
+    "static/media/Logo.png": "/static/media/Logo.f25231dc15486e602cc1.png",
+    "static/media/educacionnavarra.png": "/static/media/educacionnavarra.42f960ab9e38026c90a7.png",
+    "index.html": "/index.html",
+    "main.b8bee9c3.js.map": "/static/js/main.b8bee9c3.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b8bee9c3.js"
+  ]
+}

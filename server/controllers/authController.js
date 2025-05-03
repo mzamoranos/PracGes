@@ -22,10 +22,11 @@ async function login(req, res) {
         }
 
         if (!user) {
+
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
-        const isMatch = await compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
