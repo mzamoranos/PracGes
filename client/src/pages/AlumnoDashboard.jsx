@@ -24,8 +24,8 @@ const AlumnoDashboard = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <h1 className="text-3xl font-bold text-red-800 mb-4">Bienvenido Alumno</h1>
-      <p className="text-lg text-gray-700">DNI: {userData.dni}</p>
+      <h1 className="text-3xl font-bold text-red-800 mb-4">Bienvenido Alumno:</h1>
+      <p className="text-lg text-gray-700">{userData.nombre} con DNI: {userData.dni}</p>
       {/* Aquí podrías mostrar datos del alumno obtenidos del backend */}
     </div>
   );
