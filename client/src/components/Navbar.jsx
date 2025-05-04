@@ -41,7 +41,13 @@ const Navbar = () => {
       <Link to="/" onClick={() => setOpen(false)}>Inicio</Link>
       <Link to="/normativa" onClick={() => setOpen(false)}>Normativa</Link>
       <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
-    </nav>
+      {rol === 'alumno' && (
+  <>
+    <Link to="/plan-formativo" className="mx-2 text-white">Plan Formativo</Link>
+    <Link to="/diario" className="mx-2 text-white">Diario</Link>
+  </>
+)}
+      </nav>
   </div>
 )}
       </nav>
