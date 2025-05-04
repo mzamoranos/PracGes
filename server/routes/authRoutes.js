@@ -10,7 +10,10 @@ require('dotenv').config();
 
 // Route for user login
 router.post('/login', authController.login);
-
+router.post('/diario', authMiddleware, diarioController.crearEntrada);
+router.post('/diario/visualizar', authMiddleware, diarioController.visualizarEntradas);
+router.post('/plan-formativo', authMiddleware, planFormativoController.crearPlanFormativo);
+router.post('/plan-formativo/visualizar', authMiddleware, planFormativoController.visualizarPlanFormativo);
 // Route for getting user profile (protected)
 //router.get('/profile', authController.getProfile);
 

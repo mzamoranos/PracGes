@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../images/Logo.png'; 
 
-
 const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [dropdownPlanOpen, setDropdownPlanOpen] = useState(false);
@@ -51,8 +50,8 @@ const Navbar = () => {
                 <button className="hover:underline">Diario</button>
                 {dropdownDiarioOpen && (
                   <div className="absolute bg-white text-black rounded shadow-lg mt-2">
-                    <Link to="/diario/registrar" className="block px-4 py-2 hover:bg-gray-200">Registrar Actividades</Link>
-                    <Link to="/diario/visualizar" className="block px-4 py-2 hover:bg-gray-200">Visualizar Diario</Link>
+                    <Link to="/diario/registrar" className="block px-4 py-2 hover:bg-gray-200" >Registrar Actividades</Link>
+                    <Link to="/diario/ver" className="block px-4 py-2 hover:bg-gray-200">Visualizar Diario</Link>
                   </div>
                 )}
               </div>
@@ -85,12 +84,12 @@ const Navbar = () => {
                 <div className="mt-2">
                   <div className="font-semibold">Plan Formativo</div>
                   <Link to="/plan-formativo/visualizar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Plan</Link>
-                  <Link to="/plan-formativo/resultados" onClick={() => setOpen(false)} className="block pl-4 mt-4">Resultados de Aprendizaje</Link>
+                  <Link to="/plan-formativo/RA" onClick={() => setOpen(false)} className="block pl-4 mt-4">Resultados de Aprendizaje</Link>
                 </div>
                 <div className="mt-2">
                   <div className="font-semibold">Diario</div>
                   <Link to="/diario/registrar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Registrar Actividades</Link>
-                  <Link to="/diario/visualizar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Diario</Link>
+                  <Link to="/diario/ver" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Diario</Link>
                 </div>
               </>
             )}

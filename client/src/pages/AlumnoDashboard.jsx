@@ -34,8 +34,7 @@ const AlumnoDashboard = () => {
     
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
       <h1 className="text-3xl font-bold text-red-800 mb-4">Bienvenido Alumno:</h1>
-      <p className="text-lg text-gray-700">Usuario conectado: {userData.nombre}, con DNI: {userData.dni}</p>
-      {/* Aquí podrías mostrar datos del alumno obtenidos del backend */}
+      <p className="text-lg text-gray-700">Usuario conectado: {userData.nombre} {userData.apellidos}, con DNI: {userData.dni}</p>
     </div>
   </main>
           <Footer />

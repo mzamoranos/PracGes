@@ -53,10 +53,10 @@ const LoginPage = () => {
             <main className="flex items-center justify-center flex-1">
       
         
-        <div className="bg-red-50 p-8 border border-red-300 rounded-2xl shadow-md w-full max-w-md">
+        <div className="bg-stone-200 p-8 border border-stone-300 rounded-2xl shadow-md w-full max-w-md">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="dni" className="block text-gray-800 font-medium mb-2">Usuario</label>
+            <label htmlFor="dni" className="bd-stone-200 block text-gray-800 font-medium mb-2">Usuario</label>
             <input
               type="text"
               id="dni"

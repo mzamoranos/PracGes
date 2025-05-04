@@ -7,9 +7,9 @@ export const theme = {
     extend: {
       colors: {
         maroon: {
-          500: '#800000',  // Un granate medio
-          600: '#660000',  // Más oscuro
-          700: '#4d0000',  // Aún más oscuro
+          500: '#9fa3a9',  // Un gris medio
+          600: '#6a6e73',  // Más oscuro
+          700: '#393d42',  // Aún más oscuro
         },
       },
     },

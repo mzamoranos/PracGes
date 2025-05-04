@@ -6,6 +6,10 @@ import LoginPage from './pages/LoginPage';
 import AlumnoDashboard from './pages/AlumnoDashboard';
 import PlanFormativoPage from './pages/PlanFormativoPage';
 import DiarioPage from './pages/DiarioPage';
+import VerDiario from './components/diario/VerDiario';
+import RegistrarDiario from './components/diario/RegistrarDiario';
+import PlanFormativoVisualizar from './components/planFormativo/PlanFormativoVisualizar';
+import ResultadosAprendizaje from './components/planFormativo/ResultadosAprendizaje';
 
 const App = () => {
   return (
@@ -18,6 +22,11 @@ const App = () => {
           <Route path="/alumno/dashboard" element={<AlumnoDashboard />} />
           <Route path="/plan-formativo" element={<PlanFormativoPage />} />
           <Route path="/diario" element={<DiarioPage />} />
+          <Route path="/plan-formativo/visualizar" element={<PlanFormativoVisualizar />} />
+          <Route path="/plan-formativo/resultados" element={<ResultadosAprendizaje />} />
+          <Route path="/diario/registrar" element={<RegistrarDiario />} />
+          <Route path="/diario/ver" element={<VerDiario />} />
+          {/* Agrega más rutas según sea necesario */}
         </Routes>
       </div>
     </Router>
