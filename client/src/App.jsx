@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import NormativaPage from './pages/NormativaPage';
 import LoginPage from './pages/LoginPage';
 import AlumnoDashboard from './pages/AlumnoDashboard';
+import PlanFormativoPage from './pages/PlanFormativoPage';
+import DiarioPage from './pages/DiarioPage';
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
           <Route path="/normativa" element={<NormativaPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/alumno/dashboard" element={<AlumnoDashboard />} />
+          <Route path="/plan-formativo" element={<PlanFormativoPage />} />
+          <Route path="/diario" element={<DiarioPage />} />
         </Routes>
       </div>
     </Router>

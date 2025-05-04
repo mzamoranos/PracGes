@@ -21,7 +21,7 @@ const Alumno = sequelize.define('Alumno', {
          unique: true 
      },
      telefono: DataTypes.STRING(20),
-        password: {
+     password: {
             type: DataTypes.STRING,
             allowNull: false,
     },

@@ -5,7 +5,10 @@ import logo from '../images/Logo.png';
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
+    const [dropdownPlanOpen, setDropdownPlanOpen] = useState(false);
+  const [dropdownDiarioOpen, setDropdownDiarioOpen] = useState(false);
   
+    const rol = ('alumno' || 'tutor_profesor' || 'tutor_empresa'); // Cambia esto según el rol del usuario
     return (
       <nav className="bg-red-800 text-white">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -21,6 +24,41 @@ const Navbar = () => {
             <Link to="/">Inicio</Link>
             <Link to="/normativa">Normativa</Link>
             <Link to="/login">Login</Link>
+
+            {rol === 'alumno' && (
+            <>
+              {/* Plan Formativo Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setDropdownPlanOpen(true)}
+                onMouseLeave={() => setDropdownPlanOpen(false)}
+              >
+                <button className="hover:underline">Plan Formativo</button>
+                {dropdownPlanOpen && (
+                  <div className="absolute bg-white text-black rounded shadow-lg mt-2">
+                    <Link to="/plan-formativo/visualizar" className="block px-4 py-2 hover:bg-gray-200">Visualizar Plan</Link>
+                    <Link to="/plan-formativo/resultados" className="block px-4 py-2 hover:bg-gray-200">Resultados de Aprendizaje</Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Diario Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setDropdownDiarioOpen(true)}
+                onMouseLeave={() => setDropdownDiarioOpen(false)}
+              >
+                <button className="hover:underline">Diario</button>
+                {dropdownDiarioOpen && (
+                  <div className="absolute bg-white text-black rounded shadow-lg mt-2">
+                    <Link to="/diario/registrar" className="block px-4 py-2 hover:bg-gray-200">Registrar Actividades</Link>
+                    <Link to="/diario/visualizar" className="block px-4 py-2 hover:bg-gray-200">Visualizar Diario</Link>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+
           </div>
         </div>
   
@@ -41,12 +79,21 @@ const Navbar = () => {
       <Link to="/" onClick={() => setOpen(false)}>Inicio</Link>
       <Link to="/normativa" onClick={() => setOpen(false)}>Normativa</Link>
       <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
+      
       {rol === 'alumno' && (
-  <>
-    <Link to="/plan-formativo" className="mx-2 text-white">Plan Formativo</Link>
-    <Link to="/diario" className="mx-2 text-white">Diario</Link>
-  </>
-)}
+              <>
+                <div className="mt-2">
+                  <div className="font-semibold">Plan Formativo</div>
+                  <Link to="/plan-formativo/visualizar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Plan</Link>
+                  <Link to="/plan-formativo/resultados" onClick={() => setOpen(false)} className="block pl-4 mt-4">Resultados de Aprendizaje</Link>
+                </div>
+                <div className="mt-2">
+                  <div className="font-semibold">Diario</div>
+                  <Link to="/diario/registrar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Registrar Actividades</Link>
+                  <Link to="/diario/visualizar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Diario</Link>
+                </div>
+              </>
+            )}
       </nav>
   </div>
 )}
