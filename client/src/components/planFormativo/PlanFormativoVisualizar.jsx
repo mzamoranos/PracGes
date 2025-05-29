@@ -17,7 +17,14 @@ const PlanFormativoVisualizar = () => {
     useEffect(() => {
       const fetchEntradas = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/planformativo/${userData.dni}`);
+          const token = userData?.token;
+          const response = await fetch('http://localhost:5000/api/planformativo/visualizar', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+          });
           if (!response.ok) throw new Error('Error al obtener el plan formativo');
           const data = await response.json();
           setEntradas(data);
@@ -41,8 +48,6 @@ const PlanFormativoVisualizar = () => {
 
         {loading ? (
           <p className="text-center text-gray-600">Cargando...</p>
-        ) : error ? (
-          <p className="text-center text-red-600">{error}</p>
         ) : entradas.length === 0 ? (
           <p className="text-center text-gray-600">No hay datos disponibles.</p>
         ) : (
@@ -52,7 +57,7 @@ const PlanFormativoVisualizar = () => {
               <div key={index} className="border p-4 rounded shadow bg-white">
                 {Object.entries(item).map(([key, value]) => (
                   <div key={key} className="mb-2">
-                    <span className="font-semibold capitalize">{key}:</span>{' '}
+                    <span  className="font-semibold capitalize"><strong>{key}:</strong></span>{' '}
                     <span>{value}</span>
                   </div>
                 ))}

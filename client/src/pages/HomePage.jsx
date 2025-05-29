@@ -16,7 +16,7 @@ const HomePage = () => {
                     Gesprac surgió como una solución a la gestión de las prácticas de empresa que realizan 
                     los alumnos de la nueva FP Dual, manejando toda la documentación, calificación y 
                     comunicación entre el alumno, la empresa y el centro educativo.
-                    
+  
                 </p>
             </main>
             <Footer />

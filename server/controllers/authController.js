@@ -1,15 +1,18 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
-
+//const diarioController = require('../controllers/diarioController');
+//const planFormativoController = require('../controllers/planFormativoController');
 const Alumnos = require ('../models/Alumno');
 const TutoresProfesores = require ('../models/TutorProfesor');
 const TutoresEmpresas = require ('../models/TutorEmpresa');
+const authController = require('../controllers/authController');
 
-async function login(req, res) {
-    const { dni, password } = req.body;
-    
+require('dotenv').config();
 
+async function login  (req, res) {
+    const { dni, password } = req.body;  
+    console.log('Hash contraseña de frontend:', password);
+        console.log('Hash contraseña en BD:', user.password);
     try {
         let user = await Alumnos.findOne({ where: { dni } });
         let rol = 'alumno';
@@ -25,9 +28,13 @@ async function login(req, res) {
 
         if (!user) {
 
-            return res.status(401).json({ message: 'Credenciales inválidas' });
+            return res.status(401).json({ message: 'No existe DNI' });
         }
-
+        
+        console.log('Contraseña enviada:', password);
+        const password = await bcrypt.hash(password, 10);
+        console.log('Contraseña enviada y encriptada:', password);
+        console.log('Contraseña en BD:', user.password);
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
@@ -39,10 +46,13 @@ async function login(req, res) {
             { expiresIn: '1h' }
         );
 
-        res.status(200).json({ message: 'Login autenticado', token, rol });
+        res.status(200).json({ message: 'Login autenticado', token, rol,dni: user.dni});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error en el login', error });
+       
+        
+        
     }
 }
-module.exports = {login };
+module.exports = {login};

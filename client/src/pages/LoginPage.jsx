@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
@@ -17,9 +17,13 @@ const LoginPage = () => {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify({ dni, password }),
     });
-
+    if (!dni || !password) {
+      setError('Por favor, completa todos los campos');
+      return;
+    }
     if (!response.ok) {
       throw new Error('Credenciales incorrectas');
     }
@@ -27,23 +31,25 @@ const LoginPage = () => {
     const data = await response.json();
 
     localStorage.setItem('token', data.token);
-    localStorage.setItem('rol', data.rol);
+    localStorage.setItem('dni', data.dni);
 
+    console.log('data rol:', data.rol);
+    console.log('DNI Usuario:', dni);
+    console.log('Contraseña enviada:', password);
     // Redirige según el rol
     if (data.rol === 'alumno') {
-      window.location.href = '/alumno/dashboard';
+      window.location.href = './AlumnoDashboard';
     } else if (data.rol === 'tutor_profesor') {
-      window.location.href = '/profesor/dashboard';
+      window.location.href = './ProfesorDashboard';
     } else if (data.rol === 'tutor_empresa') {
-      window.location.href = '/empresa/dashboard';
+      window.location.href = './EmpresaDashboard';
     }
 
   } catch (err) {
     console.error(err);
-    setError('DNI o contraseña incorrectos');
+    setError('DNI o contraseña incorrectos');  
   }
 };
-
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -57,10 +63,7 @@ const LoginPage = () => {
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="dni" className="bd-stone-200 block text-gray-800 font-medium mb-2">Usuario</label>
-            <input
-              type="text"
-              id="dni"
-              value={dni}
+            <input type="text" id="dni" value={dni}
               onChange={(e) => setDni(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon-500"
               placeholder="Introduce tu dni"
@@ -69,10 +72,7 @@ const LoginPage = () => {
 
           <div>
             <label htmlFor="password" className="block text-gray-700 font-medium mb-2">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
+            <input type="password" id="password" value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-maroon-300"
               placeholder="Introduce tu contraseña"

@@ -20,10 +20,10 @@ const App = () => {
           <Route path="/normativa" element={<NormativaPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/alumno/dashboard" element={<AlumnoDashboard />} />
-          <Route path="/plan-formativo" element={<PlanFormativoPage />} />
+          
           <Route path="/diario" element={<DiarioPage />} />
-          <Route path="/plan-formativo/visualizar" element={<PlanFormativoVisualizar />} />
-          <Route path="/plan-formativo/resultados" element={<ResultadosAprendizaje />} />
+          <Route path="/planformativo/visualizar" element={<PlanFormativoVisualizar />} />
+          <Route path="/planformativo/resultados" element={<ResultadosAprendizaje />} />
           <Route path="/diario/registrar" element={<RegistrarDiario />} />
           <Route path="/diario/ver" element={<VerDiario />} />
           {/* Agrega más rutas según sea necesario */}

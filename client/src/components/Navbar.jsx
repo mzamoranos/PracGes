@@ -6,8 +6,12 @@ const Navbar = () => {
     const [open, setOpen] = useState(false);
     const [dropdownPlanOpen, setDropdownPlanOpen] = useState(false);
   const [dropdownDiarioOpen, setDropdownDiarioOpen] = useState(false);
-  
-    const rol = ('alumno' || 'tutor_profesor' || 'tutor_empresa'); // Cambia esto según el rol del usuario
+  const userData = JSON.parse(localStorage.getItem('userData'));  //el rol se guarda en el localStorage
+  const rol = userData?.rol || null;
+  const handleLogout = () => {
+    localStorage.removeItem('userData');
+    window.location.href = '/';
+  };
     return (
       <nav className="bg-red-800 text-white">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
@@ -29,23 +33,24 @@ const Navbar = () => {
               {/* Plan Formativo Dropdown */}
               <div
                 className="relative"
-                onMouseEnter={() => setDropdownPlanOpen(true)}
-                onMouseLeave={() => setDropdownPlanOpen(false)}
+                onClick={() => setDropdownPlanOpen(true)}
+                onMouseDown={() => setDropdownDiarioOpen(false)}
               >
                 <button className="hover:underline">Plan Formativo</button>
                 {dropdownPlanOpen && (
                   <div className="absolute bg-white text-black rounded shadow-lg mt-2">
-                    <Link to="/plan-formativo/visualizar" className="block px-4 py-2 hover:bg-gray-200">Visualizar Plan</Link>
-                    <Link to="/plan-formativo/resultados" className="block px-4 py-2 hover:bg-gray-200">Resultados de Aprendizaje</Link>
+                    <Link to="/planformativo/visualizar" className="block px-4 py-2 hover:bg-gray-200">Visualizar Plan</Link>
+                    <Link to="/planformativo/resultados" className="block px-4 py-2 hover:bg-gray-200">Resultados de Aprendizaje</Link>
                   </div>
-                )}
+              
+               )}
               </div>
 
               {/* Diario Dropdown */}
               <div
                 className="relative"
-                onMouseEnter={() => setDropdownDiarioOpen(true)}
-                onMouseLeave={() => setDropdownDiarioOpen(false)}
+                onClick={() => setDropdownDiarioOpen(true)}
+                onMouseDown={() => setDropdownPlanOpen(false)}
               >
                 <button className="hover:underline">Diario</button>
                 {dropdownDiarioOpen && (
@@ -55,7 +60,11 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              <div className="relative">
+                <button className="hover:underline focus-visible:outline-none" onClick={handleLogout}>Logout</button>
+                </div>
             </>
+
           )}
 
           </div>
@@ -83,17 +92,22 @@ const Navbar = () => {
               <>
                 <div className="mt-2">
                   <div className="font-semibold">Plan Formativo</div>
-                  <Link to="/plan-formativo/visualizar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Plan</Link>
-                  <Link to="/plan-formativo/RA" onClick={() => setOpen(false)} className="block pl-4 mt-4">Resultados de Aprendizaje</Link>
+                  <Link to="/planformativo/visualizar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Plan</Link>
+                  <Link to="/planformativo/RA" onClick={() => setOpen(false)} className="block pl-4 mt-4">Resultados de Aprendizaje</Link>
                 </div>
                 <div className="mt-2">
                   <div className="font-semibold">Diario</div>
                   <Link to="/diario/registrar" onClick={() => setOpen(false)} className="block pl-4 mt-4">Registrar Actividades</Link>
                   <Link to="/diario/ver" onClick={() => setOpen(false)} className="block pl-4 mt-4">Visualizar Diario</Link>
                 </div>
+                <div className="mt-2">
+                <button className="hover:underline focus-visible:outline-none" onClick={handleLogout}>Logout</button>
+                </div>
               </>
             )}
       </nav>
+
+      
   </div>
 )}
       </nav>
