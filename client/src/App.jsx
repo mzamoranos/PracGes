@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import NormativaPage from './pages/NormativaPage';
-import LoginPage from './pages/LoginPage';
-import AlumnoDashboard from './pages/AlumnoDashboard';
-import PlanFormativoPage from './pages/PlanFormativoPage';
-import DiarioPage from './pages/DiarioPage';
+import HomePage from './pages/Home';
+import NormativaPage from './pages/Normativa';
+import LoginPage from './pages/Login';
+import AlumnoDashboard from './pages/Alumno';
+import PlanFormativoPage from './pages/PlanFormativo';
+import DiarioPage from './pages/Diario';
 import VerDiario from './components/diario/VerDiario';
 import RegistrarDiario from './components/diario/RegistrarDiario';
 import PlanFormativoVisualizar from './components/planFormativo/PlanFormativoVisualizar';
@@ -22,10 +22,10 @@ const App = () => {
           <Route path="/alumno/dashboard" element={<AlumnoDashboard />} />
           <Route path="/plan-formativo" element={<PlanFormativoPage />} />
           <Route path="/diario" element={<DiarioPage />} />
-          <Route path="/plan-formativo/visualizar" element={<PlanFormativoVisualizar />} />
-          <Route path="/plan-formativo/resultados" element={<ResultadosAprendizaje />} />
+          <Route path="/plan-formativo/:id/visualizar" element={<PlanFormativoVisualizar />} />
+          <Route path="/plan-formativo/:id/resultados" element={<ResultadosAprendizaje />} />
           <Route path="/diario/registrar" element={<RegistrarDiario />} />
-          <Route path="/diario/ver" element={<VerDiario />} />
+          <Route path="/diario/:id" element={<VerDiario />} />
           {/* Agrega más rutas según sea necesario */}
         </Routes>
       </div>

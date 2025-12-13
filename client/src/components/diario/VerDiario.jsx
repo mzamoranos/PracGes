@@ -11,15 +11,15 @@ const VerDiario = () => {
   ];*/
   const [entradas, setEntradas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  const userData = JSON.parse(localStorage.getItem('userData')) || {};
 
   useEffect(() => {
-    const fetchEntradas = async () => {
+    const fetchEntradas = async () => {   
       try {
-        const response = await fetch(`http://localhost:5000/api/diario/${userData.dni}`);
+        const response = await fetch(`http://localhost:5000/api/diario/${userData?.dni}`);
         if (!response.ok) throw new Error('Error al obtener el diario');
         const data = await response.json();
-        setEntradas(data);
+        setEntradas(data);    
       } catch (error) {
         console.error('Error:', error);
       } finally {

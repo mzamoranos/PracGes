@@ -34,7 +34,8 @@ const RegistrarDiario = () => {
         setHoras('');
         setDescripcion('');
       } else {
-        alert('Error al guardar');
+        const errorMessage = await res.text();
+        alert(`Error al guardar: ${errorMessage}`);
       }
     } catch (err) {
       console.error(err);
