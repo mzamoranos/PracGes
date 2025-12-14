@@ -4,7 +4,7 @@ import HomePage from './pages/Home';
 import NormativaPage from './pages/Normativa';
 import LoginPage from './pages/Login';
 import AlumnoDashboard from './pages/Alumno';
-import PlanFormativoPage from './pages/PlanFormativo';
+import PlanFormativoPage from './components/planFormativo/PlanFormativo';
 import DiarioPage from './pages/Diario';
 import VerDiario from './components/diario/VerDiario';
 import RegistrarDiario from './components/diario/RegistrarDiario';

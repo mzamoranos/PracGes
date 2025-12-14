@@ -1,0 +1,24 @@
+.sidebar {
+    background-color: #7f1d1d;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .sidebar a {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive: solo visible en móvil */
+  @media (min-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+  }
+  

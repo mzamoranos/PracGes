@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import './AlumnoDashboard.css';
 
 const AlumnoDashboard = () => {
   const navigate = useNavigate();
@@ -25,20 +26,25 @@ const AlumnoDashboard = () => {
   }, [navigate]);
 
   return (
+    <div className="page-layout">
+      <Navbar />
 
-      <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <h2 className="text-3xl font-bold text-center text-red-800 mb-4 p-4">Iniciar sesión</h2>
+      <h2 className="page-title">
+        Panel del Alumno
+      </h2>
 
-          <main className="flex items-center justify-center flex-1">
-    
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
-      <h1 className="text-3xl font-bold text-red-800 mb-4">Bienvenido Alumno:</h1>
-      <p className="text-lg text-gray-700">Usuario conectado: {userData.nombre} {userData.apellidos}, con DNI: {userData.dni}</p>
+      <main className="dashboard-main">
+        <div className="dashboard-card">
+          <h1 className="dashboard-heading">Bienvenido Alumno</h1>
+          <p className="dashboard-text">
+            Usuario conectado con DNI: <strong>{userData.dni}</strong>
+          </p>
+        </div>
+      </main>
+
+      <Footer />
     </div>
-  </main>
-          <Footer />
-      </div>
-      );
-    };
+  );
+};
+
 export default AlumnoDashboard;
