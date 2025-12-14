@@ -1,4 +1,4 @@
-export const content = [
+ export const content = [
   "./public/index.html",
   "./src/**/*.{js,jsx,ts,tsx}",
 ];
