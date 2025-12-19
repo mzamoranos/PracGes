@@ -1,0 +1,17 @@
+{
+  "name": "pracges",
+  "version": "1.0.0",
+  "description": "Gestión de planes formativos y diarios",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["educación", "dual", "planes formativos"],
+  "author": "Mónica Zamorano Sardón",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mzamoranos/PracGes.git"
+  }
+}

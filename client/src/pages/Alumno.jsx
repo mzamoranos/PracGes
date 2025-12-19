@@ -7,7 +7,12 @@ import './AlumnoDashboard.css';
 
 const AlumnoDashboard = () => {
   const navigate = useNavigate();
-  const [userData, setUserData] = useState({ dni: '' });
+  const [userData, setUserData] = useState({
+    dni: '',
+    nombre: '',
+    apellidos: '',
+    telefono: ''
+  });
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -20,8 +25,13 @@ const AlumnoDashboard = () => {
         const decoded = jwtDecode(token);
         const dni = decoded.dni;
 
-    fetch(`http://localhost:5000/api/alumnos/${dni}`)
-      .then(res => {
+    fetch(`http://localhost:5000/api/alumnos/${dni}`
+    , {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })  
+    .then(res => {
         if (!res.ok) throw new Error('Error al cargar alumno');
         return res.json();
       })
