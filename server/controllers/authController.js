@@ -45,4 +45,19 @@ async function login(req, res) {
         res.status(500).json({ message: 'Error en el login', error });
     }
 }
-module.exports = {login };
+
+async function getProfile(req, res) {
+    try {
+      res.status(200).json({
+        message: 'Perfil del usuario',
+        user: req.user
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Error al obtener el perfil' });
+    }
+  }
+  
+  module.exports = {
+    login,
+    getProfile
+  };

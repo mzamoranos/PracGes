@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const authMiddleware = require('../middleware/authMiddleware');
+const alumnosController = require('../controllers/alumnosController');
 
+router.get('/:dni', authMiddleware, alumnosController.getAlumnoByDni);
+/*
 router.get('/perfil', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ message: 'Token no proporcionado' });
@@ -12,6 +16,6 @@ router.get('/perfil', (req, res) => {
   } catch (error) {
     res.status(401).json({ message: 'Token inválido' });
   }
-});
+}); */
 
 module.exports = router;

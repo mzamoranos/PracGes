@@ -13,4 +13,15 @@ const crearEntrada = async (req, res) => {
       res.status(500).json({ error: 'Error al guardar entrada en la base de datos' });
     }
   };
-  module.exports = { crearEntrada };
+
+  const visualizarEntradas = async (req, res) => {
+    try {
+      // Lógica para obtener las entradas del diario
+      res.status(200).json({ message: 'Entradas obtenidas correctamente' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al obtener las entradas del diario' });
+    }
+  };
+  
+  module.exports = { visualizarEntradas, crearEntrada };
