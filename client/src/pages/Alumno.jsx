@@ -14,10 +14,23 @@ const AlumnoDashboard = () => {
 
     if (!token) {
       navigate('/login');
+      return;
     } else {
       try {
         const decoded = jwtDecode(token);
-        setUserData({ dni: decoded.dni });
+        const dni = decoded.dni;
+
+    fetch(`http://localhost:5000/api/alumnos/${dni}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Error al cargar alumno');
+        return res.json();
+      })
+      .then(data => setUserData(data))
+      .catch(err => {
+        console.error(err);
+        navigate('/login');
+      });
+
       } catch (error) {
         console.error('Token inválido:', error);
         navigate('/login');
@@ -37,7 +50,10 @@ const AlumnoDashboard = () => {
         <div className="dashboard-card">
           <h1 className="dashboard-heading">Bienvenido Alumno</h1>
           <p className="dashboard-text">
-            Usuario conectado con DNI: <strong>{userData.dni}</strong>
+            Usuario conectado con DNI: <strong>{userData.dni}</strong>  
+            Nombre: <strong>{userData.nombre} {userData.apellidos}</strong>
+            Telefono: <strong>{userData.telefono}</strong>
+            
           </p>
         </div>
       </main>

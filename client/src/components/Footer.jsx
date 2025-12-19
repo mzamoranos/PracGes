@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="text-center mt-8">
+        <footer className="footer">
             <p>© 2025 PracGes. Todos los derechos reservados.</p>
         </footer>
     );

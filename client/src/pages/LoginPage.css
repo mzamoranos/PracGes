@@ -50,7 +50,7 @@
   }
   
   .btn-primary {
-    background-color: #7f1d1d;
+    background-color: #78AB4F;
     color: white;
     padding: 0.6rem;
     border: none;
@@ -60,6 +60,10 @@
   }
   
   .btn-primary:hover {
-    background-color: #6b1717;
+    background-color: #C2DAAF;
+    color:#78AB4F;
+    //font-weight: bold;
+    font-size: 1rem;
+    border: 0.5rem;
   }
   

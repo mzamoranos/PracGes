@@ -1,3 +1,4 @@
+import './Sidebar.css';
 export default function Sidebar({ closeMenu }) {
     return (
       <div className="Sidebar">

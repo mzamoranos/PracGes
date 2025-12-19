@@ -22,7 +22,7 @@
   .normativa-card {
     flex: 1;
     background-color: white;
-    border: 1px solid #fca5a5;
+    border: 1px solid #487A43;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@
   }
   
   .normativa-card:hover {
-    background-color: #fee2e2;
+    background-color: #DAE9CE;
     transform: translateY(-4px);
   }
   
@@ -53,12 +53,12 @@
   .normativa-card h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #7f1d1d;
+    color: #579951;
     margin-bottom: 0.8rem;
   }
   
   .normativa-card p {
     font-size: 1rem;
-    color: #4b5563;
+    color: #78AB4F;
   }
   

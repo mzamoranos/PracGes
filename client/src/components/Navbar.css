@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #7f1d1d;
+    background-color: #78AB4F;
     color: white;
   }
   
@@ -64,7 +64,7 @@
   }
   
   .dropdown-menu a:hover {
-    background-color: #e5e7eb;
+    background-color: #DAE9CE;
   }
   
   /* Mobile */
@@ -74,7 +74,7 @@
     left: 0;
     width: 50%;
     height: 100%;
-    background-color: #7f1d1d;
+    background-color: #B6D5B3;
     color: white;
     padding: 1.5rem;
     z-index: 1000;
