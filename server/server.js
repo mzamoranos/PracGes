@@ -1,20 +1,26 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
+const authRoutes = require('./routes/authRoutes');
+const alumnoRoutes = require('./routes/alumnoRoutes').default;
+const profesorRoutes = require('./routes/profesorRoutes');
+const empresaRoutes = require('./routes/empresaRoutes');
+
 const app = express();
 const port = process.env.PORT || 5000;
-const authRoutes = require('./routes/authRoutes');
-const jwt = require('jsonwebtoken');
-const alumnosRoutes = require('./routes/alumnosRoutes');
+//const jwt = require('jsonwebtoken');
+
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//app.use('/api/auth', authRoutes);
-app.use('/api/alumnos', alumnosRoutes);
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/alumno', require('./routes/alumnoRoutes').default);
+app.use('/api/profesor', require('./routes/profesorRoutes'));
+app.use('/api/empresa', require('./routes/empresaRoutes'));
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Algo salió mal!');

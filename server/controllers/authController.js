@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+//require('dotenv').config();
 
 const Alumnos = require ('../models/Alumno');
 const TutoresProfesores = require ('../models/TutorProfesor');
@@ -56,8 +56,10 @@ async function getProfile(req, res) {
       res.status(500).json({ message: 'Error al obtener el perfil' });
     }
   }
-  
+
+ 
   module.exports = {
     login,
-    getProfile
+    getProfile,
+    
   };
