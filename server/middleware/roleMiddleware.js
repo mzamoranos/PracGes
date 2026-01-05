@@ -1,4 +1,4 @@
-module.exports = (rolesPermitidos) => {
+module.exports =  function roleMiddleware(roles){
   return (req, res, next) => {
     if (!rolesPermitidos.includes(req.user.rol)) {
       return res.status(403).json({ message: 'Acceso denegado' });

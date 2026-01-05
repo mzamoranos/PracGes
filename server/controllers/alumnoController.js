@@ -1,8 +1,8 @@
-import { findOne } from '../models/Alumno';
+const Alumnos = require('../models/Alumno');
 
 async function getAlumnoMe(req, res) {
   try {
-    // El DNI viene del token (authMiddleware)
+    // El DNI y rol vienen del token (authMiddleware)
     const { dni, rol } = req.user;
 
     // Seguridad: solo alumnos
@@ -10,7 +10,7 @@ async function getAlumnoMe(req, res) {
       return res.status(403).json({ message: 'Acceso no autorizado' });
     }
 
-    const alumno = await findOne({
+    const alumno = await Alumnos.findOne({
       where: { dni },
       attributes: ['dni', 'nombre', 'apellidos', 'telefono']
     });
@@ -30,7 +30,7 @@ async function getAlumnoByDni(req, res) {
   try {
     const { dni } = req.params;
 
-    const alumno = await findOne({
+    const alumno = await Alumnos.findOne({
       where: { dni },
       attributes: ['dni', 'nombre', 'apellidos', 'telefono']
     });
@@ -46,4 +46,7 @@ async function getAlumnoByDni(req, res) {
   }
 }
 
-export default { getAlumnoMe, getAlumnoByDni };
+module.exports = {
+  getAlumnoMe,
+  getAlumnoByDni
+};
