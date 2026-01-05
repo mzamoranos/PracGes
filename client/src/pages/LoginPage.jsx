@@ -27,7 +27,7 @@ const LoginPage = () => {
       }
 
       const data = await response.json();
-console.log('Login exitoso:', data);
+      console.log('Login exitoso:', data);
       localStorage.setItem('token', data.token);
       localStorage.setItem('rol', data.rol);
 
@@ -38,7 +38,7 @@ console.log('Login exitoso:', data);
       } else if (data.rol === 'tutor_empresa') {
         navigate('/empresa/dashboard');
       }
-
+      console.log('rol encontrado:', data.rol);
     } catch (err) {
       console.error(err);
       setError('DNI o contraseña incorrectos');

@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/diario" element={<ProtectedRoute rolPermitido="alumno"><DiarioPage /></ProtectedRoute>} />
           <Route path="/plan-formativo" element={<ProtectedRoute rolPermitido="alumno"><PlanFormativoPage /></ProtectedRoute>} />
           <Route path="/plan-formativo/:id/visualizar" element={<ProtectedRoute rolPermitido="alumno"><PlanFormativoVisualizar /></ProtectedRoute>} />
-          <Route path="/plan-formativo/:id/resultados" element={<ProtectedRoute rolPermitido="alumno"><ResultadosAprendizaje /></ProtectedRoute>} />
+         {/* error <Route path="/plan-formativo/:id/resultados" element={<ProtectedRoute rolPermitido="alumno"><ResultadosAprendizaje /></ProtectedRoute>} /> */}
          
           <Route path="/diario/registrar" element={<ProtectedRoute rolPermitido="alumno"><RegistrarDiario /></ProtectedRoute>} />
           <Route path="/diario/:id" element={<ProtectedRoute rolPermitido="alumno"><VerDiario /></ProtectedRoute>} />
