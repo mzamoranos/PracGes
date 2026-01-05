@@ -16,7 +16,7 @@ router.get(
   router.get(
   '/:dni',
   authMiddleware,
-  roleMiddleware([ 'admin']),
+  roleMiddleware([ 'tutor_empresa']),
   empresaController.getEmpresaByDni
 );
   module.exports = router;

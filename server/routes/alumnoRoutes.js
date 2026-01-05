@@ -17,7 +17,7 @@ router.get(
 router.get(
   '/:dni',
   authMiddleware,
-  roleMiddleware(['tutor_profesor', 'tutor_empresa', 'admin']),
+  roleMiddleware(['alumno']),
   alumnoController.getAlumnoByDni
 );
 

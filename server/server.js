@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
 
 const authRoutes = require('./routes/authRoutes');
-const alumnoRoutes = require('./routes/alumnoRoutes').default;
+const alumnoRoutes = require('./routes/alumnoRoutes');
 const profesorRoutes = require('./routes/profesorRoutes');
 const empresaRoutes = require('./routes/empresaRoutes');
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/alumno', require('./routes/alumnoRoutes').default);
+app.use('/api/alumno', require('./routes/alumnoRoutes'));
 app.use('/api/profesor', require('./routes/profesorRoutes'));
 app.use('/api/empresa', require('./routes/empresaRoutes'));
 

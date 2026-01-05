@@ -19,5 +19,5 @@ router.post('/login', authController.login);
 //router.delete('/plan-formativo/:id', authMiddleware, planFormativoController.eliminarPlanFormativo);
 //router.get('/plan-formativo/:id', authMiddleware, planFormativoController.visualizarPlanFormativo);
 router.get('/profile', authMiddleware, authController.getProfile); // Route for getting user profile (protected)
-//router.get('/alumno', authMiddleware, authController.getAllAlumnos); // Route for getting all alumnos (protected)
+router.get('/alumno', authMiddleware, authController.getAllAlumnos); // Route for getting all alumnos (protected)
   module.exports = router;
