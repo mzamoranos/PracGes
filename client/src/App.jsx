@@ -4,6 +4,9 @@ import HomePage from './pages/HomePage';
 import NormativaPage from './pages/NormativaPage';
 import LoginPage from './pages/LoginPage';
 import AlumnoDashboard from './pages/AlumnoDashboard';
+import EmpresaDashboard from './pages/EmpresaDashboard';
+import ProfesorDashboard from './pages/ProfesorDashboard';
+
 import PlanFormativoPage from './components/planFormativo/PlanFormativo';
 import DiarioPage from './pages/DiarioPage';
 import VerDiario from './components/diario/VerDiario';
@@ -11,6 +14,7 @@ import RegistrarDiario from './components/diario/RegistrarDiario';
 import PlanFormativoVisualizar from './components/planFormativo/PlanFormativoVisualizar';
 import ResultadosAprendizaje from './components/planFormativo/ResultadosAprendizaje';
 import ProtectedRoute from './components/ProtectedRoute';
+
 
 
 
@@ -23,7 +27,8 @@ const App = () => {
           <Route path="/normativa" element={<NormativaPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/alumno/dashboard" element={<ProtectedRoute rolPermitido="alumno"><AlumnoDashboard /></ProtectedRoute>} />
-
+          <Route path="/empresa/dashboard" element={<ProtectedRoute rolPermitido="tutor_empresa"><EmpresaDashboard /></ProtectedRoute>} />
+          <Route path="/profesor/dashboard" element={<ProtectedRoute rolPermitido="tutor_profesor"><ProfesorDashboard /></ProtectedRoute>} />
           <Route path="/diario" element={<ProtectedRoute rolPermitido="alumno"><DiarioPage /></ProtectedRoute>} />
           <Route path="/plan-formativo" element={<ProtectedRoute rolPermitido="alumno"><PlanFormativoPage /></ProtectedRoute>} />
           <Route path="/plan-formativo/:id/visualizar" element={<ProtectedRoute rolPermitido="alumno"><PlanFormativoVisualizar /></ProtectedRoute>} />
