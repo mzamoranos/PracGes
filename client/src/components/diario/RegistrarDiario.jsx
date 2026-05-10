@@ -10,23 +10,29 @@ const RegistrarDiario = () => {
   const [descripcion, setDescripcion] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const nuevoRegistro = {
-      fecha,
-      horas: parseInt(horas),
-      descripcion,
-    };
+  // 1. Obtener datos del usuario (DNI y NIF) guardados en el login
+  // Asumiendo que se guardaron en localStorage al entrar
+  const user = JSON.parse(localStorage.getItem('usuario')); 
 
-    try {
-      const res = await fetch('http://localhost:5000/api/diario', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Authorization: `Bearer ${token}`, ← si usas autenticación
-        },
-        body: JSON.stringify(nuevoRegistro),
-      });
+  const nuevoRegistro = {
+    dni: user.dni,         // Viene del login
+    nif: user.nif_empresa, // Viene del login 
+    fecha,
+    horas: parseInt(horas),
+    descripcion,
+  };
+
+  try {
+    const res = await fetch('http://localhost:5000/api/diario', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Muy importante
+      },
+      body: JSON.stringify(nuevoRegistro),
+    });
 
       if (res.ok) {
         alert('Registro guardado');

@@ -1,18 +1,57 @@
-import { Navigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { clearAuthSession, getStoredRole, validateSession} from "../utils/auth.jsx";
 
-const ProtectedRoute = ({ children, rolPermitido }) => {
-  const token = localStorage.getItem('token');
-  const rol = localStorage.getItem('rol');
 
-  if (!token) {
-    return <Navigate to="/login" />;
+function ProtectedRoute({ children, rolPermitido }) {
+  const [status, setStatus] = useState("checking");
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function checkAccess() {
+      const storedRole = getStoredRole();
+
+      if (storedRole !== rolPermitido) {
+        clearAuthSession();
+        if (isMounted) {
+          setStatus("denied");
+        }
+        return;
+      }
+
+      const session = await validateSession();
+
+      if (!isMounted) {
+        return;
+      }
+
+      if (!session.isValid || session.user?.rol !== rolPermitido) {
+        clearAuthSession();
+        setStatus("denied");
+        return;
+      }
+
+      setStatus("allowed");
+    }
+
+    checkAccess();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [rolPermitido]);
+
+  if (status === "checking") {
+    return <p>Cargando sesion...</p>;
   }
 
-  if (rol !== rolPermitido) {
-    return <Navigate to="/login" />;
+  if (status === "denied") {
+    return <Navigate to="/login" replace />;
   }
 
   return children;
-};
+}
 
 export default ProtectedRoute;
+

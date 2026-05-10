@@ -1,47 +1,73 @@
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
-import './LoginPage.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import {
+  API_BASE_URL,
+  getDefaultDashboardRoute,
+  setAuthSession,
+  validateSession,
+} from "../utils/auth";
+import "./LoginPage.css";
 
 const LoginPage = () => {
-  const [dni, setDni] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [dni, setDni] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  useEffect(() => {
+    let isMounted = true;
+
+    async function redirectIfLoggedIn() {
+      const session = await validateSession();
+
+      if (isMounted && session.isValid && session.user?.rol) {
+        navigate(getDefaultDashboardRoute(session.user.rol), { replace: true });
+      }
+    }
+
+    redirectIfLoggedIn();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [navigate]);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ dni, password }),
+        body: JSON.stringify({
+          dni: dni.trim().toUpperCase(),
+          password,
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error('Credenciales incorrectas');
-      }
-
       const data = await response.json();
-      console.log('Login exitoso:', data);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('rol', data.rol);
 
-      if (data.rol === 'alumno') {
-        navigate('/alumno/dashboard');
-      } else if (data.rol === 'tutor_profesor') {
-        navigate('/profesor/dashboard');
-      } else if (data.rol === 'tutor_empresa') {
-        navigate('/empresa/dashboard');
+      if (!response.ok || !data.token || !data.rol) {
+        throw new Error(data.message || "Credenciales incorrectas");
       }
-      console.log('rol encontrado:', data.rol);
+
+      setAuthSession({
+        token: data.token,
+        rol: data.rol,
+      });
+
+      navigate(getDefaultDashboardRoute(data.rol), { replace: true });
     } catch (err) {
-      console.error(err);
-      setError('DNI o contraseña incorrectos');
+      setError(err.message || "DNI o contrasena incorrectos");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -49,42 +75,42 @@ const LoginPage = () => {
     <div className="page-layout">
       <Navbar />
 
-      <h2 className="page-title">
-        Iniciar sesión
-      </h2>
+      <h2 className="page-title">Iniciar sesion</h2>
 
       <main className="login-main">
         <div className="login-card">
           <form className="login-form" onSubmit={handleSubmit}>
-
             <div className="form-group">
               <label htmlFor="dni">Usuario</label>
               <input
                 type="text"
                 id="dni"
                 value={dni}
-                onChange={(e) => setDni(e.target.value)}
+                onChange={(event) => setDni(event.target.value)}
                 placeholder="Introduce tu DNI"
+                autoComplete="username"
+                required
               />
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Contraseña</label>
+              <label htmlFor="password">Contrasena</label>
               <input
                 type="password"
                 id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Introduce tu contraseña"
+                onChange={(event) => setPassword(event.target.value)}
+                placeholder="Introduce tu contrasena"
+                autoComplete="current-password"
+                required
               />
             </div>
 
             {error && <p className="form-error">{error}</p>}
 
-            <button type="submit" className="btn-primary">
-              Entrar
+            <button type="submit" className="btn-primary" disabled={isSubmitting}>
+              {isSubmitting ? "Entrando..." : "Entrar"}
             </button>
-
           </form>
         </div>
       </main>

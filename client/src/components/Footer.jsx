@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
     return (
         <footer className="footer">
-            <p>© 2025 PracGes. Todos los derechos reservados.</p>
+            <p>© 2026 PracGes. Todos los derechos reservados.</p>
         </footer>
     );
 };

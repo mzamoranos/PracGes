@@ -41,7 +41,7 @@ const NormativaPage = () => {
           </a>
 
           <a
-            href="https://cipetitudela.web.educacion.navarra.es/"
+            href="https://etisanjuan.web.educacion.navarra.es/"
             target="_blank"
             rel="noopener noreferrer"
             className="normativa-card"
