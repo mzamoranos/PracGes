@@ -38,10 +38,12 @@ export async function fetchWithAuth(path, options = {}) {
     throw new Error("No hay sesión activa");
   }
 
+  const isFormData = options.body instanceof FormData;
+
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
     headers: {
-      "Content-Type": "application/json",
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
       ...(options.headers || {}),
       Authorization: `Bearer ${token}`,
     },

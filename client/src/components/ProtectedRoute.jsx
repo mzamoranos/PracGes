@@ -1,46 +1,36 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { clearAuthSession, getStoredRole, validateSession} from "../utils/auth.jsx";
+import { clearAuthSession, validateSession} from "../utils/auth.jsx";
 
 
 function ProtectedRoute({ children, rolPermitido }) {
   const [status, setStatus] = useState("checking");
 
-  useEffect(() => {
-    let isMounted = true;
+useEffect(() => {
+  let isMounted = true;
 
-    async function checkAccess() {
-      const storedRole = getStoredRole();
+  async function checkAccess() {
+    const session = await validateSession();
 
-      if (storedRole !== rolPermitido) {
-        clearAuthSession();
-        if (isMounted) {
-          setStatus("denied");
-        }
-        return;
-      }
-
-      const session = await validateSession();
-
-      if (!isMounted) {
-        return;
-      }
-
-      if (!session.isValid || session.user?.rol !== rolPermitido) {
-        clearAuthSession();
-        setStatus("denied");
-        return;
-      }
-
-      setStatus("allowed");
+    if (!isMounted) {
+      return;
     }
 
-    checkAccess();
+    if (!session.isValid || session.user?.rol !== rolPermitido) {
+      clearAuthSession();
+      setStatus("denied");
+      return;
+    }
 
-    return () => {
-      isMounted = false;
-    };
-  }, [rolPermitido]);
+    setStatus("allowed");
+  }
+
+  checkAccess();
+
+  return () => {
+    isMounted = false;
+  };
+}, [rolPermitido]);
 
   if (status === "checking") {
     return <p>Cargando sesion...</p>;
