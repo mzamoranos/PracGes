@@ -24,6 +24,7 @@
   
   .navbar-links {
     display: flex;
+    align-items: center;
     gap: 1rem;
   }
   
@@ -33,6 +34,13 @@
     background: none;
     border: none;
     cursor: pointer;
+    font: inherit;
+    text-decoration: none;
+  }
+  
+  .navbar-links a:hover,
+  .navbar-links button:hover {
+    text-decoration: underline;
   }
   
   .navbar-toggle {
@@ -51,20 +59,25 @@
   .dropdown-menu {
     position: absolute;
     top: 100%;
+    right: 0;
     background: white;
     color: black;
     border-radius: 4px;
     margin-top: 0.5rem;
     min-width: 200px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   }
   
   .dropdown-menu a {
+    color: black;
     display: block;
     padding: 0.5rem 1rem;
   }
   
   .dropdown-menu a:hover {
     background-color: #DAE9CE;
+    text-decoration: none;
   }
   
   /* Mobile */
@@ -86,6 +99,17 @@
     align-items: center;
   }
   
+  .mobile-header button,
+  .mobile-logout {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-align: left;
+  }
+  
   .mobile-links {
     margin-top: 2rem;
     display: flex;
@@ -93,9 +117,17 @@
     gap: 1.5rem;
   }
   
+  .mobile-links a {
+    color: white;
+    text-decoration: none;
+  }
+  
   .mobile-section {
     margin-top: 1rem;
     padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
   
   /* Responsive */

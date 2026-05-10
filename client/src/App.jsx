@@ -15,8 +15,7 @@ import PlanFormativoVisualizar from './components/planFormativo/PlanFormativoVis
 import ResultadosAprendizaje from './components/planFormativo/ResultadosAprendizaje';
 import ProtectedRoute from './components/ProtectedRoute';
 
-
-
+const AUTHENTICATED_ROLES = ['alumno', 'tutor_profesor', 'tutor_empresa'];
 
 const App = () => {
   return (
@@ -29,14 +28,14 @@ const App = () => {
           <Route path="/alumno/dashboard" element={<ProtectedRoute rolPermitido="alumno"><AlumnoDashboard /></ProtectedRoute>} />
           <Route path="/empresa/dashboard" element={<ProtectedRoute rolPermitido="tutor_empresa"><EmpresaDashboard /></ProtectedRoute>} />
           <Route path="/profesor/dashboard" element={<ProtectedRoute rolPermitido="tutor_profesor"><ProfesorDashboard /></ProtectedRoute>} />
-          <Route path="/diario" element={<ProtectedRoute rolPermitido="alumno"><DiarioPage /></ProtectedRoute>} />
-          <Route path="/plan-formativo" element={<ProtectedRoute rolPermitido="alumno"><PlanFormativoPage /></ProtectedRoute>} />
-          <Route path="/plan-formativo/:id/visualizar" element={<ProtectedRoute rolPermitido="alumno"><PlanFormativoVisualizar /></ProtectedRoute>} />
-         {/* error <Route path="/plan-formativo/:id/resultados" element={<ProtectedRoute rolPermitido="alumno"><ResultadosAprendizaje /></ProtectedRoute>} /> */}
+          <Route path="/diario" element={<ProtectedRoute rolesPermitidos={AUTHENTICATED_ROLES}><DiarioPage /></ProtectedRoute>} />
+          <Route path="/plan-formativo" element={<ProtectedRoute rolesPermitidos={AUTHENTICATED_ROLES}><PlanFormativoPage /></ProtectedRoute>} />
+          <Route path="/plan-formativo/:id/visualizar" element={<ProtectedRoute rolesPermitidos={AUTHENTICATED_ROLES}><PlanFormativoVisualizar /></ProtectedRoute>} />
+         {/* error <Route path="/plan-formativo/:id/resultados" element={<ProtectedRoute rolesPermitidos={AUTHENTICATED_ROLES}><ResultadosAprendizaje /></ProtectedRoute>} /> */}
          
-          <Route path="/diario/registrar" element={<ProtectedRoute rolPermitido="alumno"><RegistrarDiario /></ProtectedRoute>} />
-          <Route path="/diario/:id" element={<ProtectedRoute rolPermitido="alumno"><VerDiario /></ProtectedRoute>} />
-          {/* Agrega más rutas según sea necesario */}
+          <Route path="/diario/registrar" element={<ProtectedRoute rolesPermitidos={AUTHENTICATED_ROLES}><RegistrarDiario /></ProtectedRoute>} />
+          <Route path="/diario/:id" element={<ProtectedRoute rolesPermitidos={AUTHENTICATED_ROLES}><VerDiario /></ProtectedRoute>} />
+          {/* Agrega mas rutas segun sea necesario */}
         </Routes>
       </div>
     </Router>
