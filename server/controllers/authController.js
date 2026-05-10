@@ -2,29 +2,33 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 //require('dotenv').config();
 
-const Alumnos = require ('../models/Alumno');
-const TutoresProfesores = require ('../models/TutorProfesor');
-const TutoresEmpresas = require ('../models/TutorEmpresa');
+const Administradores = require('../models/Administrador');
+const Alumnos = require('../models/Alumno');
+const TutoresProfesores = require('../models/TutorProfesor');
+const TutoresEmpresas = require('../models/TutorEmpresa');
 
 async function login(req, res) {
     const { dni, password } = req.body;
-    
+    const normalizedDni = String(dni || '').trim().toUpperCase();
 
     try {
-        let user = await Alumnos.findOne({ where: { dni } });
-        let rol = 'alumno';
+        let user = await Administradores.findOne({ where: { dni: normalizedDni } });
+        let rol = 'administrador';
 
         if (!user) {
-            user = await TutoresProfesores.findOne({ where: { dni } });
+            user = await Alumnos.findOne({ where: { dni: normalizedDni } });
+            rol = 'alumno';
+        }
+        if (!user) {
+            user = await TutoresProfesores.findOne({ where: { dni: normalizedDni } });
             rol = 'tutor_profesor';
         }
         if (!user) {
-            user = await TutoresEmpresas.findOne({ where: { dni } });
+            user = await TutoresEmpresas.findOne({ where: { dni: normalizedDni } });
             rol = 'tutor_empresa';
         }
 
         if (!user) {
-
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
