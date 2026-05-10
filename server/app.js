@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const config = require('./config');
 const dbTestRoutes = require('./routes/test');
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/api/test', dbTestRoutes);
 // Start the server
 const PORT = config.PORT || 5000;
