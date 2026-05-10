@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import NormativaPage from './pages/NormativaPage';
 import LoginPage from './pages/LoginPage';
+import AdminDashboard from './pages/AdminDashboard';
 import AlumnoDashboard from './pages/AlumnoDashboard';
 import EmpresaDashboard from './pages/EmpresaDashboard';
 import ProfesorDashboard from './pages/ProfesorDashboard';
@@ -15,7 +16,7 @@ import PlanFormativoVisualizar from './components/planFormativo/PlanFormativoVis
 import ResultadosAprendizaje from './components/planFormativo/ResultadosAprendizaje';
 import ProtectedRoute from './components/ProtectedRoute';
 
-const AUTHENTICATED_ROLES = ['alumno', 'tutor_profesor', 'tutor_empresa'];
+const AUTHENTICATED_ROLES = ['administrador', 'alumno', 'tutor_profesor', 'tutor_empresa'];
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/normativa" element={<NormativaPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin/dashboard" element={<ProtectedRoute rolPermitido="administrador"><AdminDashboard /></ProtectedRoute>} />
           <Route path="/alumno/dashboard" element={<ProtectedRoute rolPermitido="alumno"><AlumnoDashboard /></ProtectedRoute>} />
           <Route path="/empresa/dashboard" element={<ProtectedRoute rolPermitido="tutor_empresa"><EmpresaDashboard /></ProtectedRoute>} />
           <Route path="/profesor/dashboard" element={<ProtectedRoute rolPermitido="tutor_profesor"><ProfesorDashboard /></ProtectedRoute>} />
