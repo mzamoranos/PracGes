@@ -4,15 +4,17 @@ import logo from '../images/Logo.png';
 import { clearAuthSession, getAuthToken, getStoredRole } from '../utils/auth.jsx';
 import './Navbar.css';
 
-const PRIVATE_ROLES = ['alumno', 'tutor_profesor', 'tutor_empresa'];
+const PRIVATE_ROLES = ['administrador', 'alumno', 'tutor_profesor', 'tutor_empresa'];
 
 const dashboardRoutes = {
+  administrador: '/admin/dashboard',
   alumno: '/alumno/dashboard',
   tutor_profesor: '/profesor/dashboard',
   tutor_empresa: '/empresa/dashboard',
 };
 
 const dashboardLabels = {
+  administrador: 'Panel admin',
   alumno: 'Panel alumno',
   tutor_profesor: 'Panel profesor',
   tutor_empresa: 'Panel empresa',
@@ -28,6 +30,7 @@ const Navbar = () => {
   const token = getAuthToken();
   const rol = getStoredRole();
   const isLoggedIn = Boolean(token && PRIVATE_ROLES.includes(rol));
+  const isAdmin = rol === 'administrador';
   const dashboardRoute = dashboardRoutes[rol];
   const dashboardLabel = dashboardLabels[rol];
 
@@ -44,6 +47,7 @@ const Navbar = () => {
   const privateLinks = isLoggedIn && (
     <>
       {dashboardRoute && <Link to={dashboardRoute}>{dashboardLabel}</Link>}
+      {isAdmin && <Link to="/admin/dashboard">Gestion usuarios</Link>}
 
       <div
         className="dropdown"
@@ -81,6 +85,7 @@ const Navbar = () => {
       {dashboardRoute && (
         <Link to={dashboardRoute} onClick={closeMobileMenu}>{dashboardLabel}</Link>
       )}
+      {isAdmin && <Link to="/admin/dashboard" onClick={closeMobileMenu}>Gestion usuarios</Link>}
 
       <div className="mobile-section">
         <strong>Plan Formativo</strong>
