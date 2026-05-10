@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS administradores (
+  dni VARCHAR(9) PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  apellidos VARCHAR(150) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  telefono VARCHAR(20),
+  password VARCHAR(255) NOT NULL
+);
