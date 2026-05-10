@@ -25,6 +25,7 @@ export function clearAuthSession() {
 }
 
 export function getDefaultDashboardRoute(rol) {
+  if (rol === "administrador") return "/admin/dashboard";
   if (rol === "alumno") return "/alumno/dashboard";
   if (rol === "tutor_profesor") return "/profesor/dashboard";
   if (rol === "tutor_empresa") return "/empresa/dashboard";
@@ -83,5 +84,6 @@ export async function validateSession() {
     return { isValid: false, user: null };
   }
 }
+
 
 

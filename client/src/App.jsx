@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage';
 import AlumnoDashboard from './pages/AlumnoDashboard';
 import EmpresaDashboard from './pages/EmpresaDashboard';
 import ProfesorDashboard from './pages/ProfesorDashboard';
-
+import AdminDashboard from './pages/AdminDashboard';
 import PlanFormativoPage from './components/planFormativo/PlanFormativo';
 import DiarioPage from './pages/DiarioPage';
 import VerDiario from './components/diario/VerDiario';
@@ -15,7 +15,7 @@ import PlanFormativoVisualizar from './components/planFormativo/PlanFormativoVis
 import ResultadosAprendizaje from './components/planFormativo/ResultadosAprendizaje';
 import ProtectedRoute from './components/ProtectedRoute';
 
-const AUTHENTICATED_ROLES = ['alumno', 'tutor_profesor', 'tutor_empresa'];
+const AUTHENTICATED_ROLES = ['administrador', 'alumno', 'tutor_profesor', 'tutor_empresa'];
 
 const App = () => {
   return (
@@ -25,6 +25,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/normativa" element={<NormativaPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin/dashboard" element={<ProtectedRoute rolPermitido="administrador"><AdminDashboard /></ProtectedRoute>} />
           <Route path="/alumno/dashboard" element={<ProtectedRoute rolPermitido="alumno"><AlumnoDashboard /></ProtectedRoute>} />
           <Route path="/empresa/dashboard" element={<ProtectedRoute rolPermitido="tutor_empresa"><EmpresaDashboard /></ProtectedRoute>} />
           <Route path="/profesor/dashboard" element={<ProtectedRoute rolPermitido="tutor_profesor"><ProfesorDashboard /></ProtectedRoute>} />

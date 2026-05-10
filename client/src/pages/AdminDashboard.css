@@ -1,0 +1,96 @@
+.admin-main {
+  flex: 1;
+  background-color: #78AB4F;
+  padding: 2rem 1rem;
+}
+
+.admin-panel {
+  max-width: 960px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-panel-header h1 {
+  color: #78AB4F;
+  font-size: 1.6rem;
+  margin: 0 0 0.5rem;
+}
+
+.admin-panel-header p {
+  color: #4f6f45;
+  margin: 0 0 1.5rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-form label {
+  color: #35502f;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 0.4rem;
+}
+
+.admin-form input,
+.admin-form select {
+  border: 1px solid #B6D5B3;
+  border-radius: 6px;
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+}
+
+.admin-form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-submit {
+  align-self: flex-start;
+  background-color: #78AB4F;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+}
+
+.admin-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.admin-status {
+  border-radius: 6px;
+  margin: 0;
+  padding: 0.75rem 1rem;
+}
+
+.admin-status.success {
+  background: #DAE9CE;
+  color: #315c25;
+}
+
+.admin-status.error {
+  background: #fde4e4;
+  color: #9b1c1c;
+}
+
+@media (max-width: 700px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel {
+    padding: 1.25rem;
+  }
+}
