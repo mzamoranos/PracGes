@@ -47,4 +47,4 @@ async function getProfesorByDni(req, res) {
     }
   }
   
-  export default { getProfesor, getProfesorByDni };    
+  export { getProfesor, getProfesorByDni };    

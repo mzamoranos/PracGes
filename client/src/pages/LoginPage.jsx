@@ -79,7 +79,7 @@ const LoginPage = () => {
 
       <main className="login-main">
         <div className="login-card">
-          <form className="login-form" onSubmit={handleSubmit}>
+          <form className="login-commitform" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="dni">Usuario</label>
               <input

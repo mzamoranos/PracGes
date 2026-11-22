@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database.js');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const Diario = sequelize.define('Diario', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

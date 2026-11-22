@@ -105,7 +105,7 @@ function listTutoresEmpresas(req, res) {
   return listUsers(req, res, TutoresEmpresas);
 }
 
-export default {
+export {
   createAlumno,
   createTutorProfesor,
   createTutorEmpresa,

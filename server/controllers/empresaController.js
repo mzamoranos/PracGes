@@ -47,4 +47,4 @@ async function getEmpresaByDni(req, res) {
     }
   }
   
-  export default { getEmpresa, getEmpresaByDni };
+  export { getEmpresa, getEmpresaByDni };

@@ -1,6 +1,8 @@
-import authMiddleware from "./authMiddleware";
+//import authMiddleware from "./authMiddleware";
 function roleMiddleware(rolesPermitidos) {
-  const roles = Array.isArray(rolesPermitidos) ? rolesPermitidos : [rolesPermitidos];
+  const roles = Array.isArray(rolesPermitidos) 
+  ? rolesPermitidos 
+  : [rolesPermitidos];
 
   return (req, res, next) => {
     const { rol } = req.user;
@@ -17,4 +19,4 @@ function roleMiddleware(rolesPermitidos) {
   };
 }
 
-module.exports = roleMiddleware;
+export default roleMiddleware;
