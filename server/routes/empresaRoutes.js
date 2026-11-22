@@ -1,22 +1,22 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const authMiddleware = require('../middleware/authMiddleware');
-const roleMiddleware = require('../middleware/roleMiddleware');
-const empresaController = require('../controllers/empresaController');
+import authMiddleware from '../middleware/authMiddleware.js';
+import roleMiddleware from '../middleware/roleMiddleware.js';
+import { getEmpresa, getEmpresaByDni } from '../controllers/empresaController.js';
 
 
 router.get(
     '/me',
     authMiddleware,
     roleMiddleware('tutor_empresa'),
-    empresaController.getEmpresa
+    getEmpresa
   );
   
   router.get(
   '/:dni',
   authMiddleware,
   roleMiddleware([ 'tutor_empresa']),
-  empresaController.getEmpresaByDni
+  getEmpresaByDni
 );
-  module.exports = router;
+  export default router;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../images/Logo.png';
 import { clearAuthSession, getAuthToken, getStoredRole } from '../utils/auth.jsx';
@@ -76,16 +76,20 @@ const Navbar = () => {
         )}
       </div>
 
-      <button type="button" onClick={handleLogout}>Cerrar sesion</button>
+      <button type="button" id="logout-button" onClick={handleLogout}>
+        Cerrar sesion
+      </button>
     </>
   );
 
   const mobilePrivateLinks = isLoggedIn && (
     <>
       {dashboardRoute && (
-        <Link to={dashboardRoute} onClick={closeMobileMenu}>{dashboardLabel}</Link>
+        <Link to={dashboardRoute} onClick={closeMobileMenu}>
+          {dashboardLabel}
+        </Link>
       )}
-      {isAdmin && <Link to="/admin/dashboard" onClick={closeMobileMenu}>Gestion usuarios</Link>}
+      {isAdmin && <Link to="/admin/dashboard" id="admin-dashboard-link" onClick={closeMobileMenu}>Gestion usuarios</Link>}
 
       <div className="mobile-section">
         <strong>Plan Formativo</strong>
@@ -110,7 +114,7 @@ const Navbar = () => {
 
           <div className="navbar-title">Gestion de Practicas</div>
 
-          <button type="button" className="navbar-toggle" onClick={() => setOpen(!open)}>
+          <button type="button" id="navbar-toggle" className="navbar-toggle" onClick={() => setOpen(!open)}>
             ☰
           </button>
 
@@ -136,7 +140,7 @@ const Navbar = () => {
             <Link to="/" onClick={closeMobileMenu}>Inicio</Link>
             <Link to="/normativa" onClick={closeMobileMenu}>Normativa</Link>
 
-            {!isLoggedIn && <Link to="/login" onClick={closeMobileMenu}>Login</Link>}
+            {!isLoggedIn && <Link to="/login" id="login-link" onClick={closeMobileMenu}>Login</Link>}
 
             {mobilePrivateLinks}
           </nav>
@@ -145,7 +149,5 @@ const Navbar = () => {
     </>
   );
 };
-
-export default Navbar;
-
+export default Navbar;  
 

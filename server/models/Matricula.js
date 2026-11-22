@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const Matricula = sequelize.define('Matricula', {
     dni: {
@@ -18,4 +18,4 @@ const Matricula = sequelize.define('Matricula', {
     timestamps: false
   });
   
-  module.exports = Matricula;
+  export default Matricula;

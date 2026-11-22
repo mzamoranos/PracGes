@@ -1,4 +1,5 @@
-const { PlanFormativo } = require('../models');
+import PlanFormativo from '../models/PlanFormativo.js';
+
 
 // Crear un plan formativo
 const crearPlanFormativo = async (req, res) => {
@@ -76,7 +77,7 @@ const visualizarPlanFormativo = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   crearPlanFormativo,
   actualizarPlanFormativo,
   eliminarPlanFormativo,

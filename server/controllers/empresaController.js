@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 //require('dotenv').config();   
-const Empresas = require ('../models/Empresa');
+import Empresas from '../models/Empresa.js';
 
 async function getEmpresa(req, res) {
     try {
@@ -47,4 +47,4 @@ async function getEmpresaByDni(req, res) {
     }
   }
   
-  module.exports = { getEmpresa, getEmpresaByDni };
+  export default { getEmpresa, getEmpresaByDni };

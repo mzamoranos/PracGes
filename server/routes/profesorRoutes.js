@@ -1,21 +1,21 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const authMiddleware = require('../middleware/authMiddleware');
-const roleMiddleware = require('../middleware/roleMiddleware');
-const profesorController = require('../controllers/profesorController');
+import authMiddleware from '../middleware/authMiddleware.js';
+import roleMiddleware from '../middleware/roleMiddleware.js';
+import { getProfesor, getProfesorByDni } from '../controllers/profesorController.js';
 
 router.get(
     '/me',
     authMiddleware,
     roleMiddleware('tutor_profesor'),
-    profesorController.getProfesor
+    getProfesor
   );
 
   router.get(
   '/:dni',
   authMiddleware,
   roleMiddleware([ 'tutor_profesor']),
-  profesorController.getProfesorByDni
+  getProfesorByDni
 );
-  module.exports = router;
+  export default router;

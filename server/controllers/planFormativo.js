@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react.js';
 
 const PlanFormativoPage = () => {
   const [formData, setFormData] = useState({

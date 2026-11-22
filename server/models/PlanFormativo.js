@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const PlanFormativo = sequelize.define('PlanFormativo', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -24,4 +24,4 @@ const PlanFormativo = sequelize.define('PlanFormativo', {
     timestamps: false
   });
 
-module.exports = PlanFormativo;
+export default PlanFormativo;

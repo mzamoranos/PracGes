@@ -3,6 +3,7 @@ import RegistrarDiario from '../components/diario/RegistrarDiario';
 import VerDiario from '../components/diario/VerDiario';
 import './DiarioPage.css';
 
+
 const DiarioPage = () => {
   const [vista, setVista] = useState('registrar'); // registrar | visualizar
 

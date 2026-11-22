@@ -1,7 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const sequelize = require('../config/database');
+import { Router } from 'express';
+const router = Router();
+import sequelize from '../config/database';
 
+console.log('DB_PASSWORD definida:', process.env.DB_PASSWORD !== undefined);
+console.log('tipo DB_PASSWORD:', typeof process.env.DB_PASSWORD);
+console.log('longitud DB_PASSWORD:', process.env.DB_PASSWORD?.length);
 router.get('/db-test', async (req, res) => {
   try {
     await sequelize.authenticate();
@@ -12,4 +15,4 @@ router.get('/db-test', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

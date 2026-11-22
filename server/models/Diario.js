@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../config/database.js');
 
 const Diario = sequelize.define('Diario', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -13,10 +13,11 @@ const Diario = sequelize.define('Diario', {
     },
     fecha: { type: DataTypes.DATE, allowNull: false },
     horas: { type: DataTypes.INTEGER, allowNull: false },
-    descripcion: DataTypes.TEXT
-  }, {
+    descripcion: { type: DataTypes.TEXT, allowNull: false }
+  }, 
+  {
     tableName: 'diario',
     timestamps: false
   });
   
-  module.exports = Diario;
+export default Diario;

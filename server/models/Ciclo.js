@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const Ciclo = sequelize.define('Ciclo', {
     cod_ciclo: { 
@@ -16,5 +16,5 @@ const Ciclo = sequelize.define('Ciclo', {
     timestamps: false
   });
   
-  module.exports = Ciclo;
+  export default Ciclo;
   

@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const TutorProfesor = sequelize.define('TutorProfesor', {
     dni: { 
@@ -25,4 +25,4 @@ const TutorProfesor = sequelize.define('TutorProfesor', {
     tableName: 'tutores_profesores'
 });
 
-module.exports = TutorProfesor;
+export default TutorProfesor;

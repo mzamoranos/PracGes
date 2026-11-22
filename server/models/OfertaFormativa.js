@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
 
 const OfertaFormativa = sequelize.define('OfertaFormativa', {
     cod_ciclo: {
@@ -15,4 +15,4 @@ const OfertaFormativa = sequelize.define('OfertaFormativa', {
     timestamps: false
   });
   
-  module.exports = OfertaFormativa;
+  export default OfertaFormativa;

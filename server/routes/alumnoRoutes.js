@@ -1,16 +1,17 @@
-const express = require('express');
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
-const authMiddleware = require('../middleware/authMiddleware');
-const roleMiddleware = require('../middleware/roleMiddleware');
-const alumnoController = require('../controllers/alumnoController');
+import authMiddleware from '../middleware/authMiddleware.js';
+import roleMiddleware from '../middleware/roleMiddleware.js';
+import getAlumnoMe from '../controllers/alumnoController.js';
+import getAlumnoByDni from '../controllers/alumnoController.js';
 
 // Alumno autenticado (por token)
 router.get(
   '/me',
   authMiddleware,
   roleMiddleware(['alumno']),
-  alumnoController.getAlumnoMe
+  getAlumnoMe
 );
 
 // Alumno por DNI (solo si lo necesitas)
@@ -18,8 +19,8 @@ router.get(
   '/:dni',
   authMiddleware,
   roleMiddleware(['alumno']),
-  alumnoController.getAlumnoByDni
+  getAlumnoByDni
 );
 
 
-module.exports = router;
+export default router;

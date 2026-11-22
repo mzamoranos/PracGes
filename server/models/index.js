@@ -1,15 +1,15 @@
-const Alumno = require('./Alumno');
+const Alumno = require('./Alumno').default;
 const Diario = require('./Diario');
-const Empresa = require('./Empresa');
-const Ciclo = require('./Ciclo');
-const Matricula = require('./Matricula');
-const OfertaFormativa = require('./OfertaFormativa');
-const Modulo = require('./Modulo');
-const PlanFormativo = require('./PlanFormativo');
-const PlanFormativoResultado = require('./PlanFormativoResultado');
-const ResultadoAprendizaje = require('./ResultadoAprendizaje');
-const TutorEmpresa = require('./TutorEmpresa');
-const TutorProfesor = require('./TutorProfesor');
+const Empresa = require('./Empresa').default;
+const Ciclo = require('./Ciclo').default;
+const Matricula = require('./Matricula').default;
+const OfertaFormativa = require('./OfertaFormativa').default;
+const Modulo = require('./Modulo').default;
+const PlanFormativo = require('./PlanFormativo').default;
+const PlanFormativoResultado = require('./PlanFormativoResultado').default;
+const ResultadoAprendizaje = require('./ResultadoAprendizaje').default;
+const TutorEmpresa = require('./TutorEmpresa').default;
+const TutorProfesor = require('./TutorProfesor').default;
 
 // Aquí puedes definir las asociaciones entre los modelos si es necesario
 // Por ejemplo:

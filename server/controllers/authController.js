@@ -1,39 +1,45 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+import { compare } from 'bcrypt';
+import pkg from 'jsonwebtoken';
+const { sign } = pkg;
+//import { sign } from 'jsonwebtoken';
 //require('dotenv').config();
 
-const Alumnos = require ('../models/Alumno');
-const TutoresProfesores = require ('../models/TutorProfesor');
-const TutoresEmpresas = require ('../models/TutorEmpresa');
+import Administradores from '../models/Administrador.js';
+import Alumnos from '../models/Alumno.js';
+import TutoresProfesores from '../models/TutorProfesor.js';
+import TutoresEmpresas from '../models/TutorEmpresa.js';
 
 async function login(req, res) {
     const { dni, password } = req.body;
-    
+    const normalizedDni = String(dni || '').trim().toUpperCase();
 
     try {
-        let user = await Alumnos.findOne({ where: { dni } });
-        let rol = 'alumno';
+        let user = await Administradores.findOne({ where: { dni: normalizedDni } });
+        let rol = 'administrador';
 
         if (!user) {
-            user = await TutoresProfesores.findOne({ where: { dni } });
+            user = await Alumnos.findOne({ where: { dni: normalizedDni } });
+            rol = 'alumno';
+        }
+        if (!user) {
+            user = await TutoresProfesores.findOne({ where: { dni: normalizedDni } });
             rol = 'tutor_profesor';
         }
         if (!user) {
-            user = await TutoresEmpresas.findOne({ where: { dni } });
+            user = await TutoresEmpresas.findOne({ where: { dni: normalizedDni } });
             rol = 'tutor_empresa';
         }
 
         if (!user) {
-
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ message: 'Credenciales inválidas' });
         }
 
-        const token = jwt.sign(
+        const token = sign(
             { dni: user.dni, rol },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
@@ -58,8 +64,4 @@ async function getProfile(req, res) {
   }
 
  
-  module.exports = {
-    login,
-    getProfile,
-    
-  };
+  export default { login, getProfile };

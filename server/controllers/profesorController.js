@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 //require('dotenv').config();   
-const TutoresProfesores = require ('../models/TutorProfesor');
+import TutoresProfesores from '../models/TutorProfesor.js';
 
 async function getProfesor(req, res) {
     try {
@@ -47,4 +47,4 @@ async function getProfesorByDni(req, res) {
     }
   }
   
-  module.exports = { getProfesor, getProfesorByDni };    
+  export default { getProfesor, getProfesorByDni };    

@@ -1,5 +1,8 @@
-const jwt = require('jsonwebtoken');
-const config = require('../config/config');
+//import { verify } from 'jsonwebtoken';
+import pkg from 'jsonwebtoken';
+const { verify } = pkg;
+
+import config from '../config/config.js';
 
 function authMiddleware(req, res, next) {
     const authHeader = req.headers.authorization;
@@ -9,7 +12,7 @@ function authMiddleware(req, res, next) {
 
     const token = authHeader.split(' ')[1];
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = verify(token, process.env.JWT_SECRET);
         req.user = decoded; // ← MUY IMPORTANTE
 
         
@@ -22,4 +25,4 @@ function authMiddleware(req, res, next) {
     }
 }
 
-module.exports = authMiddleware;
+export default authMiddleware;

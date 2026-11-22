@@ -1,4 +1,4 @@
-const Alumnos = require('../models/Alumno');
+import Alumnos from '../models/Alumno.js';
 
 async function getAlumnoMe(req, res) {
   try {
@@ -46,7 +46,7 @@ async function getAlumnoByDni(req, res) {
   }
 }
 
-module.exports = {
+export default {
   getAlumnoMe,
   getAlumnoByDni
 };
