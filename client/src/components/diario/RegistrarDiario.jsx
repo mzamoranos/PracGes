@@ -1,8 +1,7 @@
 import React, { useState }  from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar.jsx';
 import Footer from '../Footer';
-
+import { fetchWithAuth } from '../../utils/auth';
 
 const RegistrarDiario = () => {
   const [fecha, setFecha] = useState('');
@@ -12,41 +11,32 @@ const RegistrarDiario = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // 1. Obtener datos del usuario (DNI y NIF) guardados en el login
-  // Asumiendo que se guardaron en localStorage al entrar
-  const user = JSON.parse(localStorage.getItem('usuario')); 
-
-  const nuevoRegistro = {
-    dni: user.dni,         // Viene del login
-    nif: user.nif_empresa, // Viene del login 
-    fecha,
-    horas: parseInt(horas),
-    descripcion,
-  };
-
+  
   try {
-    const res = await fetch('http://localhost:5000/api/diario', {
+    const res = await fetchWithAuth('/diario/diario', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Muy importante
-      },
-      body: JSON.stringify(nuevoRegistro),
+      body: JSON.stringify({
+        fecha,
+        horas: Number(horas),
+        descripcion,
+      }),
     });
 
-      if (res.ok) {
-        alert('Registro guardado');
-        setFecha('');
-        setHoras('');
-        setDescripcion('');
-      } else {
-        const errorMessage = await res.text();
-        alert(`Error al guardar: ${errorMessage}`);
-      }
-    } catch (err) {
-      console.error(err);
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.message || data.error || 'No se pudo guardar la entrada');
     }
-  };
+
+    alert('Registro guardado');
+    setFecha('');
+    setHoras('');
+    setDescripcion('');
+  } catch (err) {
+    console.error(err);
+    alert(`Error al guardar: ${err.message}`);
+  }
+};
+
 
   return (
     <div className="flex flex-col min-h-screen">

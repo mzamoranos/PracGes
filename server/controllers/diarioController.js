@@ -1,11 +1,11 @@
 import Diario from '../models/Diario.js';
 async function crearEntrada(req, res) {
   const { fecha, horas, descripcion } = req.body;
-  const dni = req.userId; // si el middleware auth extrae el dni del token
+  const dni = req.user?.dni; // si el middleware auth extrae el dni del token
   const nif = req.body.nif; // o lo pasas en el cuerpo de la solicitud
-  const id = req.params.id; // si el ID del diario se pasa como parámetro de ruta
+  //const id = req.params.id; // si el ID del diario se pasa como parámetro de ruta
   try {
-    await Diario.create({ id, fecha, horas, descripcion, dni, nif });
+    await Diario.create({ fecha, horas,descripcion, dni, nif, validado: false, observaciones_tutor: '' });
     console.log('Datos recibidos:', { fecha, horas, descripcion, dni, nif });
     res.status(201).json({
       message: 'Entrada registrada correctamente'

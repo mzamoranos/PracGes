@@ -23,6 +23,7 @@ app.use('/api/alumno', alumnoRoutes);
 app.use('/api/profesor', profesorRoutes);
 app.use('/api/empresa', empresaRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/diario', authRoutes); // Add diario routes
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

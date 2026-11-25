@@ -13,7 +13,9 @@ const Diario = sequelize.define('Diario', {
     },
     fecha: { type: DataTypes.DATE, allowNull: false },
     horas: { type: DataTypes.INTEGER, allowNull: false },
-    descripcion: { type: DataTypes.TEXT, allowNull: false }
+    descripcion: { type: DataTypes.TEXT, allowNull: false },
+    validado:{ type: DataTypes.BOOLEAN, defaultValue: false },
+    observaciones_tutor: { type: DataTypes.TEXT, allowNull: false }
   }, 
   {
     tableName: 'diario',
