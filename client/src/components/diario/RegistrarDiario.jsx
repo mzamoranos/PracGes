@@ -1,8 +1,6 @@
 import React, { useState }  from 'react';
-import Navbar from '../Navbar.jsx';
-import Footer from '../Footer';
 import { fetchWithAuth } from '../../utils/auth';
-
+import './Diario.css';
 const RegistrarDiario = () => {
   const [fecha, setFecha] = useState('');
   const [horas, setHoras] = useState('');
@@ -36,12 +34,76 @@ const RegistrarDiario = () => {
     alert(`Error al guardar: ${err.message}`);
   }
 };
+return (
+  <>
+   <header className="diario-header">
+      <p className="diario-eyebrow">Diario de prácticas</p>
+      <p className="diario-subtitle">
+        Anota la actividad realizada, el tiempo dedicado y una breve descripción.
+      </p>
+    </header>
 
+    <section className="diario-panel">
+      <div className="diario-panel-header">
+        <h2>Nueva entrada</h2>
+        <p>Los campos marcados con * son obligatorios.</p>
+      </div>
 
+      <form onSubmit={handleSubmit} className="diario-form">
+        <div className="diario-form-grid">
+          <div className="diario-field">
+            <label htmlFor="fecha">
+              Fecha <span className="diario-required">*</span>
+            </label>
+            <input id="fecha" type="date" value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+              required className="diario-input"
+            />
+          </div>
+
+          <div className="diario-field">
+            <label htmlFor="horas">
+              Horas <span className="diario-required">*</span>
+            </label>
+            <input id="horas" type="number" name="horas"
+              value={horas} min={1} max={8} step={1}
+              onChange={(e) => setHoras(e.target.value)}
+              required className="diario-input"
+            />
+            <p className="diario-help">Introduce un valor entre 1 y 8.</p>
+          </div>
+        </div>
+
+        <div className="diario-field">
+          <label htmlFor="descripcion">
+            Descripción de la actividad{' '}
+            <span className="diario-required">*</span>
+          </label>
+          <textarea
+            id="descripcion"  value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
+            rows={5} required
+            placeholder="Describe brevemente las tareas realizadas..."
+            className="diario-textarea"
+          />
+        </div>
+
+        <div className="diario-form-actions">
+          <button type="submit" className="diario-button">
+            Guardar actividad
+          </button>
+        </div>
+      </form>
+    </section>
+    </>
+);
+
+ 
+/** 
   return (
     <div className="flex flex-col min-h-screen">
-    <Navbar />
-    <h2 className="text-3xl font-bold text-center text-red-800 mb-4 p-4">Registro de Actividad</h2>
+   
+    <h2 className="text-3xl font-bold text-center text-red-800 mb-4 p-4">Entrada a registro de actividad</h2>
 
     <main className="flex items-center justify-center flex-1">
 
@@ -68,9 +130,10 @@ const RegistrarDiario = () => {
     </form>
     </div>
     </main>
-    <Footer />
+    
     </div>
   );
+  */
 };
 
 export default RegistrarDiario;

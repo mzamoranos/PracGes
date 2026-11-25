@@ -18,11 +18,23 @@ async function crearEntrada(req, res) {
 
   async function visualizarEntradas(req, res) {
   try {
-    // Lógica para obtener las entradas del diario
-    res.status(200).json({ message: 'Entradas obtenidas correctamente' });
+    const dni = req.user?.dni;
+
+    if (!dni) {
+      return res.status(401).json({ message: 'Usuario no autenticado' });
+    }
+
+    const entradas = await Diario.findAll({
+      where: { dni },
+      order: [['fecha', 'DESC'], ['id', 'DESC']],
+    });
+
+    return res.status(200).json(entradas);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener las entradas del diario' });
+    return res.status(500).json({
+      error: 'Error al obtener las entradas del diario',
+    });
   }
 }
   

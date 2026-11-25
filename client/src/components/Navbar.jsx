@@ -47,7 +47,7 @@ const Navbar = () => {
   const privateLinks = isLoggedIn && (
     <>
       {dashboardRoute && <Link to={dashboardRoute}>{dashboardLabel}</Link>}
-      {isAdmin && <Link to="/admin/dashboard">Gestion usuarios</Link>}
+      {isAdmin && <Link to="/admin/dashboard">Gestión usuarios</Link>}
 
       <div
         className="dropdown"
@@ -77,7 +77,7 @@ const Navbar = () => {
       </div>
 
       <button type="button" id="logout-button" onClick={handleLogout}>
-        Cerrar sesion
+        Cerrar sesión
       </button>
     </>
   );
@@ -102,7 +102,7 @@ const Navbar = () => {
         <Link to="/diario/registrar" onClick={closeMobileMenu}>Registrar actividades</Link>
       </div>
 
-      <button type="button" className="mobile-logout" onClick={handleLogout}>Cerrar sesion</button>
+      <button type="button" className="mobile-logout" onClick={handleLogout}>Cerrar sesión</button>
     </>
   );
 
@@ -112,7 +112,7 @@ const Navbar = () => {
         <div className="navbar-container">
           <img src={logo} alt="Logo" className="navbar-logo" />
 
-          <div className="navbar-title">Gestion de Practicas</div>
+          <div className="navbar-title">Gestión de Prácticas</div>
 
           <button type="button" id="navbar-toggle" className="navbar-toggle" onClick={() => setOpen(!open)}>
             ☰

@@ -1,0 +1,345 @@
+:root {
+  --diario-green: #386b57;
+  --diario-green-dark: #294f41;
+  --diario-green-soft: #edf4ef;
+  --diario-green-border: #cbdcd1;
+  --diario-stone-50: #fafaf9;
+  --diario-stone-100: #f5f5f4;
+  --diario-stone-200: #e7e5e4;
+  --diario-stone-500: #78716c;
+  --diario-stone-700: #44403c;
+  --diario-stone-900: #1c1917;
+}
+
+/* Página y cabecera */
+
+.diario-page {
+  min-height: 100vh;
+  background: var(--diario-stone-50);
+  color: var(--diario-stone-900);
+}
+
+.diario-content {
+  width: min(100% - 2rem, 64rem);
+  margin-inline: auto;
+  padding-block: 2.5rem;
+}
+
+.diario-header {
+  margin-bottom: 2rem;
+}
+
+.diario-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--diario-green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.diario-title {
+  margin: 0;
+  color: var(--diario-stone-900);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 750;
+  line-height: 1.15;
+}
+
+.diario-subtitle {
+  max-width: 42rem;
+  margin: 0.75rem 0 0;
+  color: var(--diario-stone-500);
+  line-height: 1.6;
+}
+
+/* Panel y formulario */
+
+.diario-panel {
+  overflow: hidden;
+  border: 1px solid var(--diario-stone-200);
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(28 25 23 / 5%);
+}
+
+.diario-panel-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--diario-stone-200);
+  background: var(--diario-stone-100);
+}
+
+.diario-panel-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.diario-panel-header p {
+  margin: 0.35rem 0 0;
+  color: var(--diario-stone-500);
+  font-size: 0.9rem;
+}
+
+.diario-form {
+  display: grid;
+  gap: 1.4rem;
+  padding: 1.5rem;
+}
+
+.diario-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.diario-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.diario-field label {
+  color: var(--diario-stone-700);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.diario-required {
+  color: var(--diario-green);
+}
+
+.diario-input,
+.diario-textarea,
+.diario-select {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d6d3d1;
+  border-radius: 0.6rem;
+  background: #fff;
+  padding: 0.75rem 0.85rem;
+  color: var(--diario-stone-900);
+  font: inherit;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.diario-textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.diario-input:focus,
+.diario-textarea:focus,
+.diario-select:focus {
+  border-color: var(--diario-green);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(56 107 87 / 15%);
+}
+
+.diario-help {
+  margin: 0;
+  color: var(--diario-stone-500);
+  font-size: 0.8rem;
+}
+
+.diario-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--diario-stone-200);
+}
+
+.diario-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 2.75rem;
+  border: 1px solid var(--diario-green);
+  border-radius: 0.6rem;
+  background: var(--diario-green);
+  padding: 0.65rem 1.2rem;
+  color: #fff;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.diario-button:hover {
+  border-color: var(--diario-green-dark);
+  background: var(--diario-green-dark);
+}
+
+.diario-button:active {
+  transform: translateY(1px);
+}
+
+.diario-button:focus-visible {
+  outline: 3px solid rgb(56 107 87 / 25%);
+  outline-offset: 2px;
+}
+
+.diario-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Lista de entradas */
+
+.diario-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.diario-entry {
+  border: 1px solid var(--diario-stone-200);
+  border-left: 4px solid var(--diario-green);
+  border-radius: 0.85rem;
+  background: #fff;
+  padding: 1.25rem 1.4rem;
+  box-shadow: 0 4px 14px rgb(28 25 23 / 4%);
+}
+
+.diario-entry-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.diario-entry-date {
+  margin: 0;
+  color: var(--diario-stone-900);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.diario-entry-hours {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--diario-green-soft);
+  padding: 0.35rem 0.7rem;
+  color: var(--diario-green-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.diario-entry-description {
+  margin: 0;
+  color: var(--diario-stone-700);
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.diario-entry-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--diario-stone-200);
+  color: var(--diario-stone-500);
+  font-size: 0.85rem;
+}
+
+/* Estados de validación */
+
+.diario-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.diario-badge-pending {
+  background: #f5f1df;
+  color: #76621d;
+}
+
+.diario-badge-approved {
+  background: var(--diario-green-soft);
+  color: var(--diario-green-dark);
+}
+
+.diario-badge-rejected {
+  background: #f4e9e7;
+  color: #8a4940;
+}
+
+/* Mensajes de carga, error y lista vacía */
+
+.diario-message,
+.diario-empty {
+  border: 1px solid var(--diario-stone-200);
+  border-radius: 0.85rem;
+  background: #fff;
+  padding: 1.5rem;
+  color: var(--diario-stone-700);
+  text-align: center;
+}
+
+.diario-message-error {
+  border-color: #e5c8c3;
+  background: #fbf5f4;
+  color: #8a4940;
+}
+
+@media (max-width: 640px) {
+  .diario-content {
+    width: min(100% - 1.25rem, 64rem);
+    padding-block: 1.5rem;
+  }
+
+  .diario-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diario-form,
+  .diario-panel-header {
+    padding: 1.1rem;
+  }
+
+  .diario-form-actions,
+  .diario-button {
+    width: 100%;
+  }
+
+  .diario-help {
+  margin: 0;
+  color: var(--diario-muted);
+  font-size: 0.8rem;
+}
+
+.diario-required {
+  color: var(--diario-green-dark);
+}
+
+.diario-entry-status {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.diario-entry-status-approved {
+  background: var(--diario-green-soft);
+  color: var(--diario-green-dark);
+}
+
+.diario-entry-status-pending {
+  background: #f5f1df;
+  color: #76621d;
+}
+
+.diario-error {
+  border: 1px solid #e5c8c3;
+  background: #fbf5f4;
+  color: #8a4940;
+}
+}
